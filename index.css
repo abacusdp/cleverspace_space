@@ -82,29 +82,7 @@ input[type=button]{
 
 }
 
-#chartContainer2{
-    margin-left: 200px;
-    width: 100%;
-    height: 300px;
-    border-top: 2px solid #ccc;
-    border-left: 2px solid #ccc;
-    border-bottom: 2px solid #999;
-    border-right: 2px solid #999;
-    box-shadow: 0 2px 2px #cccccc;
 
-}
-
-#chartContainer3{
-    margin-left: 200px;
-    width: 100%;
-    height: 300px;
-    border-top: 2px solid #ccc;
-    border-left: 2px solid #ccc;
-    border-bottom: 2px solid #999;
-    border-right: 2px solid #999;
-    box-shadow: 0 2px 2px #cccccc;
-
-}
 #wrapper{
 top: 20px;
 width: 100%;

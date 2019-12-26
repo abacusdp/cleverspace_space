@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chart using XML Data</title>
+<title>SPACE</title>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript">
@@ -418,12 +418,14 @@ $('#checkAllZone').click(function () {
 		labelAngle: -50
 	},
       axisY: {
+		  color:"#1e5b74d1",
         columnColor: "#1e5b74d1",
         lineColor: "#1e5b74d1",
         xFontColor: "#1e5b74d1",
         tickColor: "#1e5b74d1"
       },
       axisY2: {
+		  color:"#008080c2",
         columnColor: "#008080c2",
         lineColor: "#008080c2",
         xFontColor: "#008080c2",
@@ -437,14 +439,16 @@ $('#checkAllZone').click(function () {
         itemclick: toggleDataSeries
       },
       data: [{
-        type: "column",
+		type: "column",
+		color:"#008080c2",
         name: "Occupancy",
         legendText: "Occupancy",
         showInLegend: true, 
         dataPoints:occDataPointsOVC
       },
       {
-        type: "column", 
+		type: "column", 
+		color:"#1e5b74d1",
         name: "Capacity",
         legendText: "Capacity",
         axisYType: "secondary",

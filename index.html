@@ -12,10 +12,10 @@
 </head>
 <body>
 	<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>SELECT ALL</label><br>
-	<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />MUMBAI</label><br>
-	 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />HEAD OFFICE</label><br>
-	   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />DELHI</label><br>
-		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />BANGALORE</label><br><br>
+	<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />Mumbai</label><br>
+	 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />Head Office</label><br>
+	   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />Delhi</label><br>
+		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />Bangalore</label><br><br>
 		 
 		 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>SELECT ALL</label><br>
 	<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />Zone 1</label><br>
@@ -25,7 +25,10 @@
 
 			
 			 
-			 <div id="chartContainer" style="width:100%; height:300px;"></div>
+			 <div id="chartContainer" style="width:100%; height:300px;"></div><br><br>
+			 <div id="chartContainer1" style="width:100%; height:300px;"></div><br><br>
+			 <div id="chartContainer2" style="width:100%; height:300px;"></div><br><br>
+			 <div id="chartContainer3" style="width:100%; height:300px;"></div>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script>
 	var qwerty = [
@@ -418,18 +421,18 @@ $('#checkAllZone').click(function () {
 		labelAngle: -50
 	},
       axisY: {
-		  color:"#1e5b74d1",
-        columnColor: "#1e5b74d1",
-        lineColor: "#1e5b74d1",
-        xFontColor: "#1e5b74d1",
-        tickColor: "#1e5b74d1"
+		  color:"rgba(84,161,183,1)",
+        columnColor: "rgba(84,161,183,1)",
+        lineColor: "rgba(84,161,183,1)",
+        xFontColor: "rgba(84,161,183,1)",
+        tickColor: "rgba(84,161,183,1)"
       },
       axisY2: {
-		  color:"#008080c2",
-        columnColor: "#008080c2",
-        lineColor: "#008080c2",
-        xFontColor: "#008080c2",
-        tickColor: "#008080c2"
+		  color:"rgba(100,183,154,1)",
+        columnColor: "rgba(100,183,154,1)",
+        lineColor: "rgba(100,183,154,1)",
+        xFontColor: "rgba(100,183,154,1)",
+        tickColor: "rgba(100,183,154,1)"
       },  
       toolTip: {
         shared: true
@@ -437,10 +440,10 @@ $('#checkAllZone').click(function () {
       legend: {
         cursor:"pointer",
         itemclick: toggleDataSeries
-      },
+      },dataPointWidth: 60,
       data: [{
 		type: "column",
-		color:"#008080c2",
+		color:"rgba(100,183,154,1)",
         name: "Occupancy",
         legendText: "Occupancy",
         showInLegend: true, 
@@ -448,7 +451,7 @@ $('#checkAllZone').click(function () {
       },
       {
 		type: "column", 
-		color:"#1e5b74d1",
+		color:"rgba(84,161,183,1)",
         name: "Capacity",
         legendText: "Capacity",
         axisYType: "secondary",
@@ -456,7 +459,9 @@ $('#checkAllZone').click(function () {
         dataPoints:capDataPointsOVC
       }]
     });
-    chart.render();
+	chart.render();
+	
+	
     
     function toggleDataSeries(e) {
       if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -498,7 +503,55 @@ $('#checkAllZone').click(function () {
 		  chart.options.data[1].dataPoints = capDataPointsOVC;
 		  chart.render();
 		});
-		
+		var chart = new CanvasJS.Chart("chartContainer1", {
+			zoomEnabled: true,
+			title:{
+			  text: "Humidity to Occupancy"
+			},  
+			axisX:{      
+			  valueFormatString: "DD MMM,YY" ,
+			  labelAngle: -50
+		  },
+			axisY: {
+				color:"rgba(84,161,183,1)",
+			  columnColor: "rgba(84,161,183,1)",
+			  lineColor: "rgba(84,161,183,1)",
+			  xFontColor: "rgba(84,161,183,1)",
+			  tickColor: "rgba(84,161,183,1)"
+			},
+			axisY2: {
+				color:"rgba(100,183,154,1)",
+			  columnColor: "rgba(100,183,154,1)",
+			  lineColor: "rgba(100,183,154,1)",
+			  xFontColor: "rgba(100,183,154,1)",
+			  tickColor: "rgba(100,183,154,1)"
+			},  
+			toolTip: {
+			  shared: true
+			},
+			legend: {
+			  cursor:"pointer",
+			  itemclick: toggleDataSeries
+			},dataPointWidth: 60,
+			data: [{
+			  type: "column",
+			  color:"rgba(100,183,154,1)",
+			  name: "Occupancy",
+			  legendText: "Occupancy",
+			  showInLegend: true, 
+			  dataPoints:occDataPointsOVC
+			},
+			{
+			  type: "column", 
+			  color:"rgba(84,161,183,1)",
+			  name: "Capacity",
+			  legendText: "Capacity",
+			  axisYType: "secondary",
+			  showInLegend: true,
+			  dataPoints:capDataPointsOVC
+			}]
+		  });
+		  chart.render();	
 
     </script>
 </body>

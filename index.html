@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPACE</title>
+<link rel="stylesheet" href="index.css">
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript">
@@ -11,24 +12,34 @@
 </script>
 </head>
 <body>
-	<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>SELECT ALL</label><br>
+	<div>
+	<div id="checkboxwrapper">
+	<div id="checkbox">
+		<h2>LOCATION</h2><br>
+	<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>Select All</label><br>
 	<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />Mumbai</label><br>
 	 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />Head Office</label><br>
 	   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />Delhi</label><br>
-		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />Bangalore</label><br><br>
-		 
-		 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>SELECT ALL</label><br>
-	<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />Zone 1</label><br>
-	 <label><input name="selector[]" id="ad_Checkbox20" class="ads_Checkbox1" type="checkbox" value="2" />Zone 2</label><br>
-		 
-		 <label><input type="button" id="save_value" name="save_value" value="Filter" /><br><br>
-
+		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />Bangalore</label>
+		 </div><br>
+		 <div id="checkbox1">
+			<h2>ZONE</h2><br>
+		 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>Select All</label><br>
+	<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />1</label><br>
+	 <label><input name="selector[]" id="ad_Checkbox20" class="ads_Checkbox1" type="checkbox" value="2" />2</label>
+	
+	</div><br>
+	<div id="filter">
+		 <label><input type="button" id="save_value" name="save_value" value="Filter" /></div>
+		 </div><br><br>
 			
-			 
-			 <div id="chartContainer" style="width:100%; height:300px;"></div><br><br>
-			 <div id="chartContainer1" style="width:100%; height:300px;"></div><br><br>
-			 <div id="chartContainer2" style="width:100%; height:300px;"></div><br><br>
-			 <div id="chartContainer3" style="width:100%; height:300px;"></div>
+     	<div id="wrapper">
+			 <div id="chartContainer" ></div><br>
+			 <div id="chartContainer1"></div><br>
+			 <div id="chartContainer2"></div><br>
+			 <div id="chartContainer3"></div>
+		</div>
+	</div>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script>
 	var qwerty = [

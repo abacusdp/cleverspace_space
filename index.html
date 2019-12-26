@@ -30,7 +30,7 @@
 	
 	</div><br>
 	<div id="filter">
-		 <label><input type="button" id="save_value" name="save_value" value="Filter" /></div>
+		 <label><input type="button" id="save_value" name="save_value" value="Add Filter"/></div>
 		 </div><br><br>
 			
      	<div id="wrapper">
@@ -372,11 +372,19 @@
 		
 	occDataPointsOVC=[]
 	capDataPointsOVC=[]
+	humDataPointsHVO=[]
+	illDataPointsIVO=[]
+	tempDataPointsTVO=[]
   
 	let xOccupancy={}
 	let yCapacity={}
+let xHumidity={}
+let xIlluminance={}
+let xTemp={}
 
-
+let humidityCount={}
+let illCount={}
+let tempCount={}
 
 	qwerty.forEach(function(obj,index){
 	  if(locNames.includes(obj.c) &&  zoneNames.includes(obj.ZONE)){
@@ -394,10 +402,35 @@
 		  else{
 			yCapacity[obj.DATE]=0
 		  }
-	  }
-	  
+		  if(obj.DATE in xHumidity ){
+			humidityCount[obj.DATE]+=1;
+			xHumidity[obj.DATE]+=obj.HUMIDITY
+		  }
+		  else{
+			humidityCount[obj.DATE]=1;
+			xHumidity[obj.DATE]=0
+		  }
+
+		  if(obj.DATE in xIlluminance ){
+			illCount[obj.DATE]+=1;
+			xIlluminance[obj.DATE]+=obj.LIGHT
+		  }
+		  else{
+			illCount[obj.DATE]=1;
+			xIlluminance[obj.DATE]=0
+		  }
+		  
+		  if(obj.DATE in xTemp ){
+			tempCount[obj.DATE]+=1;
+			xTemp[obj.DATE]+=obj.TEMP
+		  }
+		  else{
+			tempCount[obj.DATE]=1;
+			xTemp[obj.DATE]=0
+		  }
+	  }  
 	})
- 	let indexOccupancy=0,indexCapacity=0
+ 	let indexOccupancy=0,indexCapacity=0,indexHumidity=0,indexIll=0,indexTemp
 	for(let[key,value] of Object.entries(xOccupancy)){
 	  indexOccupancy++
 	  occDataPointsOVC.push({x:new Date(key),y:value})
@@ -407,7 +440,21 @@
 	  capDataPointsOVC.push({x:new Date(key),y:value})
 
 	}
+	for(let[key,value] of Object.entries(xHumidity)){
+		indexHumidity++
+		humDataPointsHVO.push({x:new Date(key),y:value/humidityCount[key]})
+	  }
+	  for(let[key,value] of Object.entries(xIlluminance)){
+		indexIll++
+		illDataPointsIVO.push({x:new Date(key),y:value/illCount[key]})
+	  }
+	  
 
+	  for(let[key,value] of Object.entries(xTemp)){
+		indexTemp++
+		tempDataPointsTVO.push({x:new Date(key),y:value/tempCount[key]})
+	  }
+	  console.log(tempCount)
 	//chart.data[0].dataPoints[0] = occDataPointsOVC;
 	//chart.data[1].dataPoints[0] = capDataPointsOVC;
 	//chart.render();
@@ -425,7 +472,9 @@ $('#checkAllZone').click(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
       zoomEnabled: true,
       title:{
-        text: "Occupancy v/s Capacity"
+		text: "Occupancy v/s Capacity",
+		fontFamily: "Arial, Helvetica, sans-serif",
+		fontStyle: "Bold"
 	  },  
 	  axisX:{      
 		valueFormatString: "DD MMM,YY" ,
@@ -470,8 +519,160 @@ $('#checkAllZone').click(function () {
       }]
     });
 	chart.render();
-	
-	
+	var chart1 = new CanvasJS.Chart("chartContainer1", {
+		zoomEnabled: true,
+		title:{
+		  text: "Humidity to Occupancy",
+		  fontFamily: "Arial, Helvetica, sans-serif",
+		  fontStyle: "Bold"
+		},  
+		axisX:{      
+		  valueFormatString: "DD MMM,YY" ,
+		  labelAngle: -50
+	  },
+		axisY: {
+			color:"rgba(84,161,183,1)",
+		  columnColor: "rgba(84,161,183,1)",
+		  lineColor: "rgba(84,161,183,1)",
+		  xFontColor: "rgba(84,161,183,1)",
+		  tickColor: "rgba(84,161,183,1)"
+		},
+		axisY2: {
+			color:"rgba(100,183,154,1)",
+		  columnColor: "rgba(100,183,154,1)",
+		  lineColor: "rgba(100,183,154,1)",
+		  xFontColor: "rgba(100,183,154,1)",
+		  tickColor: "rgba(100,183,154,1)"
+		},  
+		toolTip: {
+		  shared: true
+		},
+		legend: {
+		  cursor:"pointer",
+		  itemclick: toggleDataSeries
+		},
+		data: [{
+		  type: "column",
+		  color:"rgba(100,183,154,1)",
+		  name: "Occupancy",
+		  legendText: "Occupancy",
+		  showInLegend: true, 
+		  dataPoints:occDataPointsOVC
+		},
+		{
+		  type: "column", 
+		  color:"rgba(84,161,183,1)",
+		  name: "Humidity",
+		  legendText: "Humidity",
+		  axisYType: "secondary",
+		  showInLegend: true,
+		  dataPoints:humDataPointsHVO
+		}]
+	  });
+	  chart1.render();	
+	var chart2 = new CanvasJS.Chart("chartContainer2", {
+		zoomEnabled: true,
+		title:{
+		  text: "Avg. Illuminance to Occupancy",
+		  fontFamily: "Arial, Helvetica, sans-serif",
+		  fontStyle: "Bold"
+		},  
+		axisX:{      
+		  valueFormatString: "DD MMM,YY" ,
+		  labelAngle: -50
+	  },
+		axisY: {
+			color:"rgba(84,161,183,1)",
+		  columnColor: "rgba(84,161,183,1)",
+		  lineColor: "rgba(84,161,183,1)",
+		  xFontColor: "rgba(84,161,183,1)",
+		  tickColor: "rgba(84,161,183,1)"
+		},
+		axisY2: {
+			color:"rgba(100,183,154,1)",
+		  columnColor: "rgba(100,183,154,1)",
+		  lineColor: "rgba(100,183,154,1)",
+		  xFontColor: "rgba(100,183,154,1)",
+		  tickColor: "rgba(100,183,154,1)"
+		},  
+		toolTip: {
+		  shared: true
+		},
+		legend: {
+		  cursor:"pointer",
+		  itemclick: toggleDataSeries
+		},
+		data: [{
+		  type: "column",
+		  color:"rgba(100,183,154,1)",
+		  name: "Occupancy",
+		  legendText: "Occupancy",
+		  showInLegend: true, 
+		  dataPoints:occDataPointsOVC
+		},
+		{
+		  type: "column", 
+		  color:"rgba(84,161,183,1)",
+		  name: "Illuminance",
+		  legendText: "Illuminance",
+		  axisYType: "secondary",
+		  showInLegend: true,
+		  dataPoints:illDataPointsIVO
+		}]
+	  });
+	  chart2.render();  
+//======================================================
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+	zoomEnabled: true,
+	title:{
+	  text: "Ambient Temperature to Occupancy",
+	  fontFamily: "Arial, Helvetica, sans-serif",
+	  fontStyle: "Bold"
+	},  
+	axisX:{      
+	  valueFormatString: "DD MMM,YY" ,
+	  labelAngle: -50
+  },
+	axisY: {
+		color:"rgba(84,161,183,1)",
+	  columnColor: "rgba(84,161,183,1)",
+	  lineColor: "rgba(84,161,183,1)",
+	  xFontColor: "rgba(84,161,183,1)",
+	  tickColor: "rgba(84,161,183,1)"
+	},
+	axisY2: {
+		color:"rgba(100,183,154,1)",
+	  columnColor: "rgba(100,183,154,1)",
+	  lineColor: "rgba(100,183,154,1)",
+	  xFontColor: "rgba(100,183,154,1)",
+	  tickColor: "rgba(100,183,154,1)"
+	},  
+	toolTip: {
+	  shared: true
+	},
+	legend: {
+	  cursor:"pointer",
+	  itemclick: toggleDataSeries
+	},
+	data: [{
+	  type: "column",
+	  color:"rgba(100,183,154,1)",
+	  name: "Occupancy",
+	  legendText: "Occupancy",
+	  showInLegend: true, 
+	  dataPoints:occDataPointsOVC
+	},
+	{
+	  type: "column", 
+	  color:"rgba(84,161,183,1)",
+	  name: "Temperature",
+	  legendText: "Temperature",
+	  axisYType: "secondary",
+	  showInLegend: true,
+	  dataPoints:tempDataPointsTVO
+	}]
+  });
+  chart3.render(); 
     
     function toggleDataSeries(e) {
       if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -480,7 +681,10 @@ $('#checkAllZone').click(function () {
       else {
         e.dataSeries.visible = true;
       }
-      chart.render();
+	  chart.render();
+	  chart1.render();
+	  chart2.render();
+	  chart3.render();
     }
     var limit = 1000;    //increase number of dataPoints by increasing this
         
@@ -512,57 +716,13 @@ $('#checkAllZone').click(function () {
 		  chart.options.data[0].dataPoints = occDataPointsOVC;
 		  chart.options.data[1].dataPoints = capDataPointsOVC;
 		  chart.render();
+		  chart1.render();
+		  chart2.render();
+	      chart3.render();
 		});
-		var chart = new CanvasJS.Chart("chartContainer1", {
-			zoomEnabled: true,
-			title:{
-			  text: "Humidity to Occupancy"
-			},  
-			axisX:{      
-			  valueFormatString: "DD MMM,YY" ,
-			  labelAngle: -50
-		  },
-			axisY: {
-				color:"rgba(84,161,183,1)",
-			  columnColor: "rgba(84,161,183,1)",
-			  lineColor: "rgba(84,161,183,1)",
-			  xFontColor: "rgba(84,161,183,1)",
-			  tickColor: "rgba(84,161,183,1)"
-			},
-			axisY2: {
-				color:"rgba(100,183,154,1)",
-			  columnColor: "rgba(100,183,154,1)",
-			  lineColor: "rgba(100,183,154,1)",
-			  xFontColor: "rgba(100,183,154,1)",
-			  tickColor: "rgba(100,183,154,1)"
-			},  
-			toolTip: {
-			  shared: true
-			},
-			legend: {
-			  cursor:"pointer",
-			  itemclick: toggleDataSeries
-			},
-			data: [{
-			  type: "column",
-			  color:"rgba(100,183,154,1)",
-			  name: "Occupancy",
-			  legendText: "Occupancy",
-			  showInLegend: true, 
-			  dataPoints:occDataPointsOVC
-			},
-			{
-			  type: "column", 
-			  color:"rgba(84,161,183,1)",
-			  name: "Capacity",
-			  legendText: "Capacity",
-			  axisYType: "secondary",
-			  showInLegend: true,
-			  dataPoints:capDataPointsOVC
-			}]
-		  });
-		  chart.render();	
-
+		
+		
+		
     </script>
 </body>
 </html>

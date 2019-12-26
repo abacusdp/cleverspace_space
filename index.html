@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chart using XML Data</title>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+ 
+</script>
+</head>
+<body>
+	<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>SELECT ALL</label><br>
+	<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />MUMBAI</label><br>
+	 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />HEAD OFFICE</label><br>
+	   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />DELHI</label><br>
+		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />BANGALORE</label><br><br>
+		 
+		 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>SELECT ALL</label><br>
+	<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />Zone 1</label><br>
+	 <label><input name="selector[]" id="ad_Checkbox20" class="ads_Checkbox1" type="checkbox" value="2" />Zone 2</label><br>
+		 
+		 <label><input type="button" id="save_value" name="save_value" value="Filter" /><br><br>
+
+			
+			 
+			 <div id="chartContainer" style="width:100%; height:300px;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script>
+	var qwerty = [
+    {
+      "c": "MUMBAI",
+      "ZONE": 1,
+      "OCCUPANCY": 23,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 32,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 1,
+      "OCCUPANCY": 24,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 1,
+      "OCCUPANCY": 21,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 1,
+      "OCCUPANCY": 34,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 1,
+      "OCCUPANCY": 43,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 1,
+      "OCCUPANCY": 42,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 28,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 1,
+      "OCCUPANCY": 31,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 1,
+      "OCCUPANCY": 23,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 30,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 1,
+      "OCCUPANCY": 46,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 1,
+      "OCCUPANCY": 43,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 1,
+      "OCCUPANCY": 23,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 28,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 1,
+      "OCCUPANCY": 43,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 1,
+      "OCCUPANCY": 36,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 1,
+      "OCCUPANCY": 37,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 1,
+      "OCCUPANCY": 32,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 1,
+      "OCCUPANCY": 31,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 2,
+      "OCCUPANCY": 26,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 2,
+      "OCCUPANCY": 24,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 2,
+      "OCCUPANCY": 41,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 2,
+      "OCCUPANCY": 26,
+      "DATE": "3/1/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 2,
+      "OCCUPANCY": 23,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 2,
+      "OCCUPANCY": 28,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 2,
+      "OCCUPANCY": 21,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 2,
+      "OCCUPANCY": 32,
+      "DATE": "3/2/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 2,
+      "OCCUPANCY": 36,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 2,
+      "OCCUPANCY": 35,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 2,
+      "OCCUPANCY": 26,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 2,
+      "OCCUPANCY": 28,
+      "DATE": "3/3/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    },
+    {
+      "c": "MUMBAI",
+      "ZONE": 2,
+      "OCCUPANCY": 23,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 125,
+      "TEMP": 23,
+      "HUMIDITY": 78,
+      "CAPACITY": 30
+    },
+    {
+      "c": "HEAD OFFICE",
+      "ZONE": 2,
+      "OCCUPANCY": 24,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 130,
+      "TEMP": 24,
+      "HUMIDITY": 85,
+      "CAPACITY": 30
+    },
+    {
+      "c": "DELHI",
+      "ZONE": 2,
+      "OCCUPANCY": 21,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 140,
+      "TEMP": 25,
+      "HUMIDITY": 87,
+      "CAPACITY": 30
+    },
+    {
+      "c": "BANGALORE",
+      "ZONE": 2,
+      "OCCUPANCY": 32,
+      "DATE": "3/4/2019 12:00:00 AM",
+      "LIGHT": 70,
+      "TEMP": 35,
+      "HUMIDITY": 98,
+      "CAPACITY": 30
+    }
+  ]
+  	var occDataPointsOVC=[]
+  	var capDataPointsOVC=[]
+  	OccupancyCapacity(["MUMBAI","HEAD OFFICE","DELHI","BANGALORE"],[1,2])
+  	function OccupancyCapacity(locNames,zoneNames){
+
+		
+	occDataPointsOVC=[]
+	capDataPointsOVC=[]
+  
+	let xOccupancy={}
+	let yCapacity={}
+
+
+
+	qwerty.forEach(function(obj,index){
+	  if(locNames.includes(obj.c) &&  zoneNames.includes(obj.ZONE)){
+		  console.log(obj);
+		  if(obj.DATE in xOccupancy ){
+			xOccupancy[obj.DATE]+=obj.OCCUPANCY
+		  }
+		  else{
+			xOccupancy[obj.DATE]=0
+		  }
+
+		  if(obj.DATE in yCapacity ){
+			yCapacity[obj.DATE]+=obj.CAPACITY
+		  }
+		  else{
+			yCapacity[obj.DATE]=0
+		  }
+	  }
+	  
+	})
+ 	let indexOccupancy=0,indexCapacity=0
+	for(let[key,value] of Object.entries(xOccupancy)){
+	  indexOccupancy++
+	  occDataPointsOVC.push({x:new Date(key),y:value})
+	}
+	for(let[key,value] of Object.entries(yCapacity)){
+	  indexCapacity++
+	  capDataPointsOVC.push({x:new Date(key),y:value})
+
+	}
+
+	//chart.data[0].dataPoints[0] = occDataPointsOVC;
+	//chart.data[1].dataPoints[0] = capDataPointsOVC;
+	//chart.render();
+
+	}
+
+$('#checkAll').click(function () {    
+	$('.ads_Checkbox').prop('checked', this.checked);    
+});
+
+$('#checkAllZone').click(function () {    
+	$('.ads_Checkbox1').prop('checked', this.checked);    
+});
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+      zoomEnabled: true,
+      title:{
+        text: "Occupancy v/s Capacity"
+	  },  
+	  axisX:{      
+		valueFormatString: "DD MMM,YY" ,
+		labelAngle: -50
+	},
+      axisY: {
+        columnColor: "#1e5b74d1",
+        lineColor: "#1e5b74d1",
+        xFontColor: "#1e5b74d1",
+        tickColor: "#1e5b74d1"
+      },
+      axisY2: {
+        columnColor: "#008080c2",
+        lineColor: "#008080c2",
+        xFontColor: "#008080c2",
+        tickColor: "#008080c2"
+      },  
+      toolTip: {
+        shared: true
+      },
+      legend: {
+        cursor:"pointer",
+        itemclick: toggleDataSeries
+      },
+      data: [{
+        type: "column",
+        name: "Occupancy",
+        legendText: "Occupancy",
+        showInLegend: true, 
+        dataPoints:occDataPointsOVC
+      },
+      {
+        type: "column", 
+        name: "Capacity",
+        legendText: "Capacity",
+        axisYType: "secondary",
+        showInLegend: true,
+        dataPoints:capDataPointsOVC
+      }]
+    });
+    chart.render();
+    
+    function toggleDataSeries(e) {
+      if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      }
+      else {
+        e.dataSeries.visible = true;
+      }
+      chart.render();
+    }
+    var limit = 1000;    //increase number of dataPoints by increasing this
+        
+     
+
+	document.getElementById("save_value").addEventListener("click", function(e) {
+		  var loc = [];var zone=[];
+		  $('.ads_Checkbox:checked').each(function(i){
+			loc[i] = $(this).val();
+		  });
+		  $('.ads_Checkbox1:checked').each(function(i){
+			zone[i] =parseInt( $(this).val());
+		  });
+
+		  let indexVal=loc.indexOf("on")
+		  let indexZone=zone.indexOf("on")
+	
+		  if(indexVal>-1){
+			  
+			loc.splice(indexVal,1)
+		  }
+
+		  if(indexZone>-1){
+			  
+			zone.splice(indexZone,1)
+		  }
+
+		  OccupancyCapacity(loc,zone)
+		  chart.options.data[0].dataPoints = occDataPointsOVC;
+		  chart.options.data[1].dataPoints = capDataPointsOVC;
+		  chart.render();
+		});
+		
+
+    </script>
+</body>
+</html>

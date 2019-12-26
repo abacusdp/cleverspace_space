@@ -42,16 +42,17 @@ body {
 }
 
 #filter{
-    margin-left: 70px;
+    margin-left: 53px;
     
 
 }
 
 input[type=button]{
-    background-color: white;
+    background-color: lightgrey;
   border: none;
   color: black;
   padding: 10px ;
+  font-style: bold;
   text-decoration: none;
   border-top: 2px solid #ccc;
     border-left: 2px solid #ccc;
@@ -114,5 +115,6 @@ input[type=button]{
     float: right;
 top: 20px;
 width: 100%;
+
 
 }

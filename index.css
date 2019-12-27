@@ -39,6 +39,11 @@ body {
     box-shadow: 0 1px 1px #cccccc;
 }
 
+.col-sm-2 label input {
+    margin-right:10px;
+ }
+
+
 #filter{
     margin-left: 53px;
     

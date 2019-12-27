@@ -461,6 +461,11 @@ let tempCount={}
 
 	}
 
+// Checked all zone and loc
+$('.ads_Checkbox').prop('checked', 'checked');
+$('.ads_Checkbox1').prop('checked', 'checked');
+
+
 $('#checkAll').click(function () {    
 	$('.ads_Checkbox').prop('checked', this.checked);    
 });
@@ -716,8 +721,15 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		  chart.options.data[0].dataPoints = occDataPointsOVC;
 		  chart.options.data[1].dataPoints = capDataPointsOVC;
 		  chart.render();
+		  // For chart 2
+		  chart1.options.data[0].dataPoints = occDataPointsOVC;
+		  chart1.options.data[1].dataPoints = humDataPointsHVO;
 		  chart1.render();
+		  chart2.options.data[0].dataPoints = occDataPointsOVC;
+		  chart2.options.data[1].dataPoints = illDataPointsIVO;
 		  chart2.render();
+		  chart3.options.data[0].dataPoints = occDataPointsOVC;
+		  chart3.options.data[1].dataPoints = tempDataPointsTVO;
 	      chart3.render();
 		});
 		

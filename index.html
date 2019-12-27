@@ -5,42 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPACE</title>
 <link rel="stylesheet" href="index.css">
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
- 
-</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
-	<div>
-	<div id="checkboxwrapper">
-	<div id="checkbox">
-		<h2>LOCATION</h2><br>
-	<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>Select All</label><br>
-	<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />Mumbai</label><br>
-	 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />Head Office</label><br>
-	   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />Delhi</label><br>
-		 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />Bangalore</label>
-		 </div><br>
-		 <div id="checkbox1">
-			<h2>ZONE</h2><br>
-		 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>Select All</label><br>
-	<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />1</label><br>
-	 <label><input name="selector[]" id="ad_Checkbox20" class="ads_Checkbox1" type="checkbox" value="2" />2</label>
-	
-	</div><br>
-	<div id="filter">
-		 <label><input type="button" id="save_value" name="save_value" value="Add Filter"/></div>
-		 </div><br><br>
-			
-     	<div id="wrapper">
-			 <div id="chartContainer" ></div><br>
-			 <div id="chartContainer1"></div><br>
-			 <div id="chartContainer2"></div><br>
-			 <div id="chartContainer3"></div>
+	<div class="container-fluid">
+		<div class="row" style="margin-top: 20px;">
+		  <div class="col-sm-12" >
+			<div class="col-sm-2" >
+				<div id="checkboxwrapper">
+					<div id="checkbox">
+						<h2>LOCATION</h2><br>
+					<label> <input name="selector[]" id="checkAll" class="ads_Checkbox" type="checkbox"/>Select All</label><br>
+					<label><input name="selector[]" id="ad_Checkbox1" class="ads_Checkbox" type="checkbox" value="MUMBAI" />Mumbai</label><br>
+					 <label><input name="selector[]" id="ad_Checkbox2" class="ads_Checkbox" type="checkbox" value="HEAD OFFICE" />Head Office</label><br>
+					   <label><input name="selector[]" id="ad_Checkbox3" class="ads_Checkbox" type="checkbox" value="DELHI" />Delhi</label><br>
+						 <label><input name="selector[]" id="ad_Checkbox4" class="ads_Checkbox" type="checkbox" value="BANGALORE" />Bangalore</label>
+						 </div><br>
+						 <div id="checkbox1">
+							<h2>ZONE</h2><br>
+						 <label> <input name="selector[]" id="checkAllZone" class="ads_Checkbox1" type="checkbox"/>Select All</label><br>
+					<label><input name="selector[]" id="ad_Checkbox10" class="ads_Checkbox1" type="checkbox" value="1" />1</label><br>
+					 <label><input name="selector[]" id="ad_Checkbox20" class="ads_Checkbox1" type="checkbox" value="2" />2</label>
+					
+					</div><br>
+					<div id="filter">
+						 <label><input type="button" id="save_value" name="save_value" value="Add Filter"/></div>
+						 </div>
+			</div>
+			<div class="col-sm-10" style="background-color:lavender;">
+				<div id="wrapper">
+					<div id="chartContainer" ></div><br>
+					<div id="chartContainer1"></div><br>
+					<div id="chartContainer2"></div><br>
+					<div id="chartContainer3"></div>
+			   </div>
+			</div>
+
+		  </div>
+		  
 		</div>
-	</div>
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	  </div>
+	  
   <script>
 	var qwerty = [
     {

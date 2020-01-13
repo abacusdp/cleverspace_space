@@ -514,8 +514,10 @@ $('#checkAllZone').click(function () {
       },
       legend: {
 		cursor:"pointer",
-		itemclick: toggleDataSeries},
+    itemclick: toggleDataSeries},
+    fontSize: 15,
       data: [{
+        legendMarkerType: "circle",
 		type: "column",
 		color:"rgba(100,183,154,1)",
         name: "Occupancy",
@@ -524,6 +526,7 @@ $('#checkAllZone').click(function () {
         dataPoints:occDataPointsOVC
       },
       {
+        legendMarkerType: "circle",
 		type: "column", 
 		color:"rgba(84,161,183,1)",
         name: "Capacity",
@@ -564,9 +567,11 @@ $('#checkAllZone').click(function () {
 		},
 		legend: {
 		  cursor:"pointer",
-		  itemclick: toggleDataSeries
+      itemclick: toggleDataSeries,
+      fontSize: 15
 		},
 		data: [{
+      legendMarkerType: "circle",
 		  type: "column",
 		  color:"rgba(100,183,154,1)",
 		  name: "Occupancy",
@@ -575,6 +580,7 @@ $('#checkAllZone').click(function () {
 		  dataPoints:occDataPointsOVC
 		},
 		{
+      legendMarkerType: "circle",
 		  type: "column", 
 		  color:"rgba(84,161,183,1)",
 		  name: "Humidity",
@@ -615,9 +621,11 @@ $('#checkAllZone').click(function () {
 		},
 		legend: {
 		  cursor:"pointer",
-		  itemclick: toggleDataSeries
+      itemclick: toggleDataSeries,
+      fontSize: 15
 		},
 		data: [{
+      legendMarkerType: "circle",
 		  type: "column",
 		  color:"rgba(100,183,154,1)",
 		  name: "Occupancy",
@@ -626,6 +634,7 @@ $('#checkAllZone').click(function () {
 		  dataPoints:occDataPointsOVC
 		},
 		{
+      legendMarkerType: "circle",
 		  type: "column", 
 		  color:"rgba(84,161,183,1)",
 		  name: "Illuminance",
@@ -667,9 +676,11 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	},
 	legend: {
 	  cursor:"pointer",
-	  itemclick: toggleDataSeries
+    itemclick: toggleDataSeries,
+    fontSize: 15
 	},
 	data: [{
+    legendMarkerType: "circle",
 	  type: "column",
 	  color:"rgba(100,183,154,1)",
 	  name: "Occupancy",
@@ -678,6 +689,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	  dataPoints:occDataPointsOVC
 	},
 	{
+    legendMarkerType: "circle",
 	  type: "column", 
 	  color:"rgba(84,161,183,1)",
 	  name: "Temperature",
